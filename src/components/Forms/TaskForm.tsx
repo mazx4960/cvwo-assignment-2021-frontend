@@ -5,33 +5,26 @@ import {
   QuestionMarkCircleIcon,
 } from "@heroicons/react/solid";
 import MultipleSelect from "../Select/MultipleSelect";
-
-interface Option {
-  id: number;
-  name: string;
-}
-
+import { connect } from "react-redux";
+import { IState } from "../../states/reducers";
 interface TaskFormProps {
   taskName: string;
   setTaskName: (taskName: string) => void;
   taskDescription: string;
   setTaskDescription: (taskDescription: string) => void;
+  taskTags: Tag[];
   tags: Tag[];
 }
 
-export default function TaskForm({
+function TaskForm({
   taskName,
   setTaskName,
   taskDescription,
   setTaskDescription,
+  taskTags,
   tags,
 }: TaskFormProps) {
-  const [selectTagsOpen, setSelectTagsOpen] = React.useState(false);
-  const [text, setText] = React.useState("");
-  const [selected, setSelected] = React.useState<Option[]>([]);
-
-  const options: Option[] = tags.map((tag) => ({ id: tag.id, name: tag.name }));
-  options.push({ id: -1, name: text });
+  const [selected, setSelected] = React.useState<Tag[]>(taskTags);
 
   return (
     <div className="flex-1 flex flex-col justify-between">
@@ -76,31 +69,23 @@ export default function TaskForm({
           <div>
             <h3 className="text-sm font-medium text-gray-900">Tags</h3>
             <div className="mt-2">
-              <div className="flex space-x-2">
-                {tags.map((tag) => (
-                  <a
-                    key={tag.name}
-                    className="rounded-full hover:opacity-75"
-                  ></a>
-                ))}
-                <button
-                  type="button"
-                  className="flex-shrink-0 bg-white inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-200 text-gray-400 hover:text-gray-500 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={() => setSelectTagsOpen(!selectTagsOpen)}
-                >
-                  <span className="sr-only">Add tag</span>
-                  <PlusSmIcon className="h-5 w-5" aria-hidden="true" />
-                </button>
+              <div className="flex flex-shrink-0 -space-x-1">
+                {selected &&
+                  selected.map((tag) => (
+                    <div
+                      key={tag.id}
+                      className="max-w-none h-6 w-6 rounded-full ring-2 ring-white bg-indigo-500"
+                    />
+                  ))}
+                {!selected.length && emptyTag}
               </div>
-              {selectTagsOpen && (
-                <MultipleSelect
-                  options={options}
-                  selected={selected}
-                  setSelected={setSelected}
-                  text={text}
-                  setText={setText}
-                />
-              )}
+            </div>
+            <div className="mt-2">
+              <MultipleSelect
+                options={tags}
+                selected={selected}
+                setSelected={setSelected}
+              />
             </div>
           </div>
           <fieldset>
@@ -218,3 +203,15 @@ export default function TaskForm({
     </div>
   );
 }
+
+const emptyTag = (
+  <div className="flex-shrink-0 bg-white inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-dashed border-gray-200 text-gray-400 hover:text-gray-500 hover:border-gray-300">
+    <PlusSmIcon className="h-4 w-4" aria-hidden="true" />
+  </div>
+);
+
+const mapStateToProps = (state: IState) => ({
+  tags: state.tags,
+});
+
+export default connect(mapStateToProps)(TaskForm);

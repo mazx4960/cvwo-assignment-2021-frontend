@@ -12,8 +12,7 @@ interface Task {
 interface Tag {
   id?: uint;
   name: string;
-  description: string;
-  color?: string;
+  color: string;
 }
 
 interface TaskTag {

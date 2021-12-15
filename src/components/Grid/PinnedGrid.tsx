@@ -3,12 +3,12 @@ import React from "react";
 import { classNames } from "../helper";
 import SimpleMenu from "../Menu/SimpleMenu";
 
-interface EventGridProps {
+interface PinnedGridProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: any[] | null;
 }
 
-export default function EventGrid({ items }: EventGridProps) {
+export default function PinnedGrid({ items }: PinnedGridProps) {
   const itemOptions = [
     {
       label: "View",

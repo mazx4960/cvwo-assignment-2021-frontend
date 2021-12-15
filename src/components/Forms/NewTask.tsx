@@ -41,7 +41,7 @@ export default function NewTask({ open, setOpen }: NewTaskProps) {
           setTaskName={setTaskName}
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
-          tags={tags}
+          taskTags={tags}
         />
       }
     />

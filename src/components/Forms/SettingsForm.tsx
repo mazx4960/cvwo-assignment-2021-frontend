@@ -168,7 +168,7 @@ export default function SettingsForm() {
             Notifications
           </h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-            We&aposll always let you know about important changes, but you pick
+            We&apos;ll always let you know about important changes, but you pick
             what else you want to hear about.
           </p>
         </div>

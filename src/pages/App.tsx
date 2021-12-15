@@ -4,6 +4,7 @@ import { useRoutes } from "react-router-dom";
 import { Spinner } from "../components/Spinner";
 import routes from "../routes";
 import { IState } from "../states/reducers";
+import { initTags } from "../states/reducers/tagReducer";
 import { initTasks } from "../states/reducers/taskReducer";
 import { initUser } from "../states/reducers/userReducer";
 
@@ -21,6 +22,7 @@ function App({ isAuthenticated }: AppProps): JSX.Element {
     dispatch(initUser());
     if (isAuthenticated) {
       dispatch(initTasks());
+      dispatch(initTags());
     }
     setIsLoading(false);
   }, [isAuthenticated, initUser, initTasks]);

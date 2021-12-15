@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import EventGrid from "../../components/Grid/EventGrid";
+import PinnedGrid from "../../components/Grid/PinnedGrid";
 import TaskTable from "../../components/Table/TaskTable";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,7 +17,7 @@ const items: any[] | null = [
 function Home(): JSX.Element {
   return (
     <>
-      <EventGrid items={items} />
+      <PinnedGrid items={items} />
       <TaskTable />
     </>
   );

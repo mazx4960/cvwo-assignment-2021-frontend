@@ -1,124 +1,111 @@
-import { XCircleIcon } from "@heroicons/react/outline";
-import React, { useState } from "react";
-import Dropdown from "./Dropdown";
-
-interface Option {
-  id: number;
-  name: string;
-}
+import React, { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/solid";
 
 interface MultipleSelectProps {
-  options: Option[];
-  selected: Option[];
-  setSelected: (selected: Option[]) => void;
-  text: string;
-  setText: (text: string) => void;
+  options: Tag[];
+  selected: Tag[];
+  setSelected: (selected: Tag[]) => void;
 }
 
 export default function MultipleSelect({
   options,
   selected,
   setSelected,
-  text,
-  setText,
 }: MultipleSelectProps) {
-  const [dropdown, setDropdown] = useState(true);
+  const isSelected = (tagId: number) =>
+    selected.filter((o) => o.id == tagId).length > 0;
 
-  const handleSelect = (option: Option) => {
-    setSelected([...selected, option]);
-    options.filter((o) => o.id !== option.id);
-  };
-
-  const handleRemove = (option: Option) => {
-    setSelected(selected.filter((o) => o.id !== option.id));
-    options.push(option);
-  };
-
-  // toggle dropdown open/close
-  const toogleDropdown = () => {
-    setDropdown(!dropdown);
+  const handleSelect = (tagId: number) => {
+    if (isSelected(tagId)) {
+      setSelected(selected.filter((o) => o.id !== tagId));
+    } else {
+      const newSelected = [
+        ...selected,
+        ...options.filter((o) => o.id == tagId),
+      ];
+      setSelected(newSelected);
+    }
   };
 
   return (
-    <div className="autcomplete-wrapper">
-      <div className="autcomplete">
-        <div className="w-full flex flex-col items-center mx-auto">
-          <div className="w-full">
-            <div className="flex flex-col items-center relative">
-              <div className="w-full ">
-                <div className="my-2 p-1 flex border border-gray-200 bg-white rounded ">
-                  <div className="flex flex-auto flex-wrap">
-                    {selected.map((option) => {
-                      return (
-                        <div
-                          key={option.id}
-                          className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-teal-100 border border-teal-300 "
-                        >
-                          <div className="text-xs font-normal leading-none max-w-full flex-initial">
-                            {option.name}
-                          </div>
-                          <div className="flex flex-auto flex-row-reverse">
-                            <div>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="100%"
-                                height="100%"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="feather feather-x cursor-pointer hover:text-teal-400 rounded-full w-4 h-4 ml-2"
-                              >
-                                <XCircleIcon
-                                  onClick={() => handleRemove(option)}
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <div className="flex-1">
-                      <input
-                        placeholder=""
-                        className="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200"
-                    onClick={toogleDropdown}
-                  >
-                    <button className="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        height="100%"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-chevron-up w-4 h-4"
+    <Listbox
+      as="div"
+      className="space-y-1"
+      value={0}
+      onChange={(value) => handleSelect(value)}
+    >
+      <Listbox.Label className="block text-sm leading-5 font-medium text-gray-700">
+        Add Tag
+      </Listbox.Label>
+      <div className="relative">
+        <span className="inline-block w-full rounded-md shadow-sm">
+          <Listbox.Button className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            <span className="block truncate">
+              {selected.length < 1
+                ? "Select tags"
+                : `Selected tags (${selected.length})`}
+            </span>
+            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+              <svg
+                className="h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </Listbox.Button>
+        </span>
+
+        <Transition
+          as={Fragment}
+          leave="transition ease-in duration-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Listbox.Options className="z-10 absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            {options.map((option, idx) => (
+              <Listbox.Option
+                key={idx}
+                className={({ active }) =>
+                  `${active ? "text-amber-900 bg-amber-100" : "text-gray-900"}
+                          cursor-default select-none relative py-2 pl-10 pr-4`
+                }
+                value={option.id}
+              >
+                {({ active }) => (
+                  <>
+                    <span
+                      className={`${
+                        selected ? "font-medium" : "font-normal"
+                      } block truncate`}
+                    >
+                      {option.name}
+                    </span>
+                    {isSelected(option.id) ? (
+                      <span
+                        className={`${
+                          active ? "text-amber-600" : "text-amber-600"
+                        }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
                       >
-                        <polyline points="18 15 12 9 6 15"></polyline>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                {dropdown ? (
-                  <Dropdown options={options} handleSelect={handleSelect} />
-                ) : null}
-              </div>
-            </div>
-          </div>
-        </div>
+                        <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                      </span>
+                    ) : null}
+                  </>
+                )}
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Transition>
       </div>
-    </div>
+    </Listbox>
   );
 }

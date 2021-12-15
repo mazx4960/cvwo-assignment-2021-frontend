@@ -42,7 +42,7 @@ export default function EditTask({ task, open, setOpen }: EditTaskProps) {
           setTaskName={setTaskName}
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
-          tags={tags}
+          taskTags={tags}
         />
       }
     />

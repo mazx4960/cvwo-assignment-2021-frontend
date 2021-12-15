@@ -115,7 +115,7 @@ export default function routes(isLoggedIn: boolean): RouteObject[] {
     },
     {
       path: "/",
-      element: !isLoggedIn ? <MainLayout /> : <Navigate to="/app/home" />,
+      element: <MainLayout />,
       children: [...menuRoutes],
     },
   ];
