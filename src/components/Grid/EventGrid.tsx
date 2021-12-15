@@ -4,6 +4,7 @@ import { classNames } from "../helper";
 import SimpleMenu from "../Menu/SimpleMenu";
 
 interface EventGridProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: any[] | null;
 }
 

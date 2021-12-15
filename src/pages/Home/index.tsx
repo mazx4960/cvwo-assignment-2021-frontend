@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import EventGrid from "../../components/Grid/EventGrid";
 import TaskTable from "../../components/Table/TaskTable";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const items: any[] | null = [
   // {
   //   id: 1,
@@ -11,7 +12,6 @@ const items: any[] | null = [
   //   pinned: true,
   //   bgColorClass: "bg-pink-600",
   // },
-  // More projects...
 ];
 
 function Home(): JSX.Element {
