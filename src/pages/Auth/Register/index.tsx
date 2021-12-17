@@ -1,6 +1,6 @@
 import { XCircleIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { IState } from "../../../states/reducers";
@@ -13,6 +13,7 @@ interface RegisterProps {
 
 function Register({ isAuthenticated, errorMessage }: RegisterProps) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string>("");
@@ -48,7 +49,7 @@ function Register({ isAuthenticated, errorMessage }: RegisterProps) {
       username,
       password,
     };
-    register(user);
+    dispatch(register(user));
   };
 
   return (

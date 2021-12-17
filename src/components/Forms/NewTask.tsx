@@ -3,6 +3,7 @@ import SlideOver from "../SlideOver";
 import { createTask } from "../../states/reducers/taskReducer";
 import { useDispatch } from "react-redux";
 import TaskForm from "./TaskForm";
+import { getRandomColor } from "../../helpers/colorsHelper";
 
 interface NewTaskProps {
   open: boolean;
@@ -14,7 +15,7 @@ export default function NewTask({ open, setOpen }: NewTaskProps) {
 
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const tags: Tag[] = [];
+  const [taskTags, setTaskTags] = useState<Tag[]>([]);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -22,8 +23,12 @@ export default function NewTask({ open, setOpen }: NewTaskProps) {
       name: taskName,
       description: taskDescription,
       deadline: null,
+      color: getRandomColor(),
+      tags: taskTags,
     };
     dispatch(createTask(newTask));
+    // TODO: update task tags
+
     setTaskName("");
     setTaskDescription("");
     setOpen(false);
@@ -41,7 +46,8 @@ export default function NewTask({ open, setOpen }: NewTaskProps) {
           setTaskName={setTaskName}
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
-          taskTags={tags}
+          taskTags={taskTags}
+          setTaskTags={setTaskTags}
         />
       }
     />

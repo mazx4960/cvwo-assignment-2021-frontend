@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SlideOver from "../SlideOver";
 import { updateTask } from "../../states/reducers/taskReducer";
 import { useDispatch } from "react-redux";
@@ -15,16 +15,25 @@ export default function EditTask({ task, open, setOpen }: EditTaskProps) {
 
   const [taskName, setTaskName] = useState(task.name);
   const [taskDescription, setTaskDescription] = useState(task.description);
-  const tags = task.tags ? task.tags : [];
+  const [taskTags, setTaskTags] = useState<Tag[]>(task.tags ? task.tags : []);
+
+  useEffect(() => {
+    if (open) {
+      setTaskName(task.name);
+      setTaskDescription(task.description);
+    }
+  }, [open]);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    const newTask = {
+    const updatedTask = {
       ...task,
       name: taskName,
       description: taskDescription,
+      tags: taskTags,
     };
-    dispatch(updateTask(newTask));
+    dispatch(updateTask(updatedTask));
+    // TODO: update task tags
     setTaskName("");
     setTaskDescription("");
     setOpen(false);
@@ -42,7 +51,8 @@ export default function EditTask({ task, open, setOpen }: EditTaskProps) {
           setTaskName={setTaskName}
           taskDescription={taskDescription}
           setTaskDescription={setTaskDescription}
-          taskTags={tags}
+          taskTags={taskTags}
+          setTaskTags={setTaskTags}
         />
       }
     />

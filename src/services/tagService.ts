@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config";
 
-const baseUrl = "http://localhost:8080/api/tags";
+const baseUrl = config.getBaseUrl() + "tags";
 
 const parseTag = (tag: Tag): Tag => {
   return {

@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "./config";
 import taskTagService from "./taskTagService";
 
-const baseUrl = "http://localhost:8080/api/tasks";
+const baseUrl = config.getBaseUrl() + "tasks";
 
 const populateTags = (id: number) => {
   const tags = taskTagService.getTagsByTaskId(id);

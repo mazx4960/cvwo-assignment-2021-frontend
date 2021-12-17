@@ -18,6 +18,8 @@ import Events from "./pages/Events";
 import Settings from "./pages/Settings";
 import Error404 from "./pages/Error/Error404";
 import Profile from "./pages/Profile";
+import TaskByTags from "./pages/Tags/TaskByTags";
+import AllTags from "./pages/Tags/AllTags";
 
 export enum MenuKey {
   DEFAULT = "Default",
@@ -58,7 +60,7 @@ export const nav: { [key: string]: NavProps } = {
     children: [
       {
         path: "add",
-        element: <Tasks />,
+        element: <></>,
       },
       {
         path: "view/:id",
@@ -75,6 +77,16 @@ export const nav: { [key: string]: NavProps } = {
     current: false,
     path: "tags",
     element: <Tags />,
+    children: [
+      {
+        path: "",
+        element: <AllTags />,
+      },
+      {
+        path: ":id",
+        element: <TaskByTags />,
+      },
+    ],
   },
   [MenuKey.EVENTS]: {
     icon: CalendarIcon,

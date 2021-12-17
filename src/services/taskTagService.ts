@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config";
 
-const baseUrl = "http://localhost:8080/api/tasktags";
+const baseUrl = config.getBaseUrl() + "tasktags";
 
 const createTaskTag = (taskId: number, tagId: number): TaskTag => {
   return {

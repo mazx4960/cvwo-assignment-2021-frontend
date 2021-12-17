@@ -6,7 +6,7 @@ interface Task {
   status?: boolean;
   tags?: Tag[];
   lists?: List[];
-  bgColorClass?: string;
+  color: string;
 }
 
 interface Tag {

@@ -19,8 +19,12 @@ import { PlusIcon } from "@heroicons/react/solid";
 import { IState } from "../../states/reducers";
 import { connect } from "react-redux";
 import { classNames } from "../helper";
+import { useNavigate } from "react-router-dom";
+import { getTagColor } from "../../helpers/colorsHelper";
 
 const TagGrid = ({ tags }: { tags: Tag[] }): JSX.Element => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="mt-10">
@@ -37,11 +41,12 @@ const TagGrid = ({ tags }: { tags: Tag[] }): JSX.Element => {
                 <button
                   type="button"
                   className="group p-2 w-full flex items-center justify-between rounded-full border border-gray-300 shadow-sm space-x-3 text-left hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => navigate(`${tag.id}`)}
                 >
                   <span className="min-w-0 flex-1 flex items-center space-x-3">
                     <span
                       className={classNames(
-                        tag.color ? tag.color : "bg-gray-200",
+                        getTagColor(tag.color),
                         "w-5 h-5 flex-shrink-0 rounded-full"
                       )}
                       aria-hidden="true"

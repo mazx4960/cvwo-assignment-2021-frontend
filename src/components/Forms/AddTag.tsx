@@ -1,18 +1,8 @@
 import { TagIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { colors } from "../../helpers/colorsHelper";
 import { createTag } from "../../states/reducers/tagReducer";
-
-const colorOptions = [
-  {
-    label: "Red",
-    value: "red",
-  },
-  {
-    label: "Blue",
-    value: "blue",
-  },
-];
 
 export default function AddTagForm(): JSX.Element {
   const dispatch = useDispatch();
@@ -73,9 +63,9 @@ export default function AddTagForm(): JSX.Element {
                 value={tagColor}
                 onChange={(event) => setTagColor(event.target.value)}
               >
-                {colorOptions.map((option, index) => (
-                  <option key={index} value={option.value}>
-                    {option.label}
+                {colors.map((color, index) => (
+                  <option key={index} value={color}>
+                    {color}
                   </option>
                 ))}
               </select>

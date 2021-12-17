@@ -7,12 +7,15 @@ import {
 import MultipleSelect from "../Select/MultipleSelect";
 import { connect } from "react-redux";
 import { IState } from "../../states/reducers";
+import { classNames } from "../helper";
+import { getTagColor } from "../../helpers/colorsHelper";
 interface TaskFormProps {
   taskName: string;
   setTaskName: (taskName: string) => void;
   taskDescription: string;
   setTaskDescription: (taskDescription: string) => void;
   taskTags: Tag[];
+  setTaskTags: (taskTags: Tag[]) => void;
   tags: Tag[];
 }
 
@@ -22,10 +25,9 @@ function TaskForm({
   taskDescription,
   setTaskDescription,
   taskTags,
+  setTaskTags,
   tags,
 }: TaskFormProps) {
-  const [selected, setSelected] = React.useState<Tag[]>(taskTags);
-
   return (
     <div className="flex-1 flex flex-col justify-between">
       <div className="px-4 divide-y divide-gray-200 sm:px-6">
@@ -70,21 +72,24 @@ function TaskForm({
             <h3 className="text-sm font-medium text-gray-900">Tags</h3>
             <div className="mt-2">
               <div className="flex flex-shrink-0 -space-x-1">
-                {selected &&
-                  selected.map((tag) => (
+                {taskTags &&
+                  taskTags.map((tag) => (
                     <div
                       key={tag.id}
-                      className="max-w-none h-6 w-6 rounded-full ring-2 ring-white bg-indigo-500"
+                      className={classNames(
+                        getTagColor(tag.color),
+                        "max-w-none h-6 w-6 rounded-full ring-2 ring-white"
+                      )}
                     />
                   ))}
-                {!selected.length && emptyTag}
+                {!taskTags.length && emptyTag}
               </div>
             </div>
             <div className="mt-2">
               <MultipleSelect
                 options={tags}
-                selected={selected}
-                setSelected={setSelected}
+                selected={taskTags}
+                setSelected={setTaskTags}
               />
             </div>
           </div>

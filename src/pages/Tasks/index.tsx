@@ -1,13 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import TaskTable from "../../components/Table/TaskTable";
+import { IState } from "../../states/reducers";
 
-function Tasks(): JSX.Element {
+function Tasks({ tasks }: { tasks: Task[] }): JSX.Element {
   return (
     <>
-      <TaskTable />
+      <TaskTable tasks={tasks} />
     </>
   );
 }
 
-export default connect()(Tasks);
+const mapStateToProps = (state: IState) => {
+  return {
+    tasks: state.tasks,
+  };
+};
+
+export default connect(mapStateToProps)(Tasks);
