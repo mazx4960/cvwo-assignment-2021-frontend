@@ -2033,7 +2033,7 @@
   dependencies:
     tslib "^2.1.0"
 
-"@fullcalendar/daygrid@^5.10.1":
+"@fullcalendar/daygrid@5.10.1":
   version "5.10.1"
   resolved "https://registry.yarnpkg.com/@fullcalendar/daygrid/-/daygrid-5.10.1.tgz#bdee4f58364fdab631b2abf8b56094ab5776f203"
   integrity sha512-sfUMP+rew0krsBffgNcWWKhBCiyytGfRKZJoc64E8ohX7VWjPcPZuB1xgO5U4wPLmNkT0rZiHoGeQGTXw1+ZKg==
@@ -2041,7 +2041,7 @@
     "@fullcalendar/common" "~5.10.1"
     tslib "^2.1.0"
 
-"@fullcalendar/react@^5.10.1":
+"@fullcalendar/react@5.10.1":
   version "5.10.1"
   resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-5.10.1.tgz#bb1652357f98b7dc01894a41e7204f1391999791"
   integrity sha512-+kV5+o9qGjkoO5j0r3oawhig+hP3inE68bHKBl6dtGQ8mi3GkEGsTL12MY2n5N0hXon6+2psIQLnAjMyRYZbmg==
@@ -4691,7 +4691,7 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv-cli@^4.1.1:
+dotenv-cli@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/dotenv-cli/-/dotenv-cli-4.1.1.tgz#26a59fbb25876008985a15fa366b416607e8372c"
   integrity sha512-XvKv1pa+UBrsr3CtLGBsR6NdsoS7znqaHUf4Knj0eZO+gOI/hjj9KgWDP+KjpfEbj6wAba1UpbhaP9VezNkWhg==
@@ -5626,7 +5626,7 @@ graphql-tag@^2.12.3:
   dependencies:
     tslib "^2.1.0"
 
-graphql@^16.1.0:
+graphql@16.1.0:
   version "16.1.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.1.0.tgz#83bebeae6e119766d04966f09de9305be7fd44e5"
   integrity sha512-+PIjmhqGHMIxtnlEirRXDHIzs0cAHAozKG5M2w2N4TnS8VzCxO3bbv1AW9UTeycBfl2QsPduxcVrBvANFKQhiw==
