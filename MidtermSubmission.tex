@@ -1,0 +1,131 @@
+\documentclass[10pt, a4paper]{article}
+
+\title{CVWO Midterm Submission}
+\author{Desmond Tan}
+
+\begin{document}
+  \maketitle
+    \section{Use Cases}
+      The product is a web application that allows the user to organise their personal tasks and events so that the user would be able to prioritise them and complete them in a timely manner.
+      \subsection{Features}
+        \begin{itemize}
+          \item
+            \textbf{User Authentication}
+            \begin{itemize}
+              \item
+                The user can login to the application using their email address and password.
+              \item
+                The user can register for an account using their email address and password.
+              \item
+                A jwt token would be generated for the user after the user has successfully logged in, and can be used to authenticate the user for a day before expiring.
+            \end{itemize}
+          \item
+            \textbf{Task Management}
+            \begin{itemize}
+              \item
+                The user can create a task using the task name, description, due date, and status.
+              \item
+                The user can edit a task using the task name, description, due date, and status.
+              \item
+                The user can delete a task using the task name, description, due date, and status.
+              \item The user can tag their tasks with a label.
+              \item The user can untag a task from a label.
+              \item The user can add a task to a list.
+              \item The user can remove a task from a list.
+            \end{itemize}
+          \item
+            \textbf{Event Management}
+            \begin{itemize}
+              \item
+                The user can create an event using the event name, description, start date, end date, and status.
+              \item
+                The user can edit an event using the event name, description, start date, end date, and status.
+              \item
+                The user can delete an event using the event name, description, start date, end date, and status.
+              \item 
+                The user can optionally link their google account to retrieve their events from their google calendar.
+            \end{itemize}
+        \end{itemize}
+    \section{Tech Stack}
+      \subsection{Frontend}
+        \begin{itemize}
+          \item React
+          \item Redux
+          \item TailwindCSS
+          \item Graphql
+          \item JWT
+          \item Google Calendar API
+          \item Vercel (Deployment)
+        \end{itemize}
+      \subsection{Backend}
+        \begin{itemize}
+          \item Golang
+          \item Gorm
+          \item Gin Framework
+          \item Graphql
+          \item JWT
+          \item Google Calendar API
+          \item gcloud app engine (Deployment)
+          \item gcloud sql (Postgres Database)
+        \end{itemize}
+    \section{Other Details}
+      \subsection{Journey}
+        I started on this project with the intention of learning more about other web frameworks as well as implementing the best practices while developing a full stack web application, hence, I decided to step out of my comfort zone and work with frameworks that are relatively more difficult like implementing using Go, redux as well as deploying the app to google cloud. 
+
+        At the start, I implemented the backend using a restful framework, but I realised that such a framework would be too limiting for implementing batch operations as well as for relational databases, such as creating a task that has several tags as well as a list that it belongs to. If implemented using a restful framework, the frontend would first has to create a task, the tags needed, as well as the list and then finally add all tags to the task and add the task to the list. This proves to be rather inefficient as the frontend would have to make multiple requests to the backend. On the other hand, implementing it using a graphql framework would be much more efficient as the entire process would be handled by the backend and the frontend would only need to send a single request to it.
+
+        Another goal that I wanted to achieve was to make the code very modular and testable, and to be able to achieve a 100\% code coverage. 
+      \subsection{Roadmap}
+        \begin{itemize}
+          \item
+            \textbf{User Authentication}
+            \begin{itemize}
+              \item
+                Implement JWT authentication for the user.
+              \item
+                Implement Google Calendar API for the user.
+            \end{itemize}
+          \item
+            \textbf{Task Management}
+            \begin{itemize}
+              \item
+                Implement a task management system.
+              \item
+                Implement a task management system with a label system.
+              \item
+                Implement a task management system with a list system.
+            \end{itemize}
+          \item
+            \textbf{Event Management}
+            \begin{itemize}
+              \item
+                Implement an event management system.
+              \item
+                Implement an event management system with a google calendar link.
+            \end{itemize}
+          \item 
+            \textbf{Testing}
+            \begin{itemize}
+              \item
+                Write unit tests for the backend.
+              \item 
+                Write unit tests for the frontend.
+              \item 
+                Write integration tests for the frontend.
+            \end{itemize}
+          \item 
+            \textbf{Deployment}
+            \begin{itemize}
+              \item
+                Deploy the application to Vercel.
+              \item
+                Deploy the application to Google Cloud.
+            \end{itemize}
+          \item 
+            \textbf{Migration from rest framework to graphql}
+            \begin{itemize}
+              \item
+                Rewrite both the frontend and backend to use graphql.
+            \end{itemize}
+        \end{itemize}
+\end{document}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "../../../components/Spinner";
 import { IState } from "../../../states/reducers";
 import { login } from "../../../states/reducers/userReducer";
 
@@ -18,6 +19,7 @@ function Login({ isAuthenticated, errorMessage }: LoginProps) {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -30,6 +32,7 @@ function Login({ isAuthenticated, errorMessage }: LoginProps) {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     dispatch(login(username, password));
   };
 
@@ -146,9 +149,12 @@ function Login({ isAuthenticated, errorMessage }: LoginProps) {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full flex justify-center py-2 px-4 space-x-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign in
+                  <span>Sign in</span>
+                  {isLoading && (
+                    <Spinner color={"white"} width={20} height={20} />
+                  )}
                 </button>
               </div>
             </form>

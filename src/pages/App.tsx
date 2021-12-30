@@ -29,7 +29,7 @@ function App({ isAuthenticated }: AppProps): JSX.Element {
 
   return (
     <>
-      {isLoading && <Spinner color={"indigo"} height={150} width={150} />}
+      {isLoading && <Spinner color={"indigo"} height={200} width={200} />}
       <RoutesToRender />
     </>
   );
