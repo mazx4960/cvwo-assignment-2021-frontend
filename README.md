@@ -24,30 +24,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Features
 
 1. Authentication
-
-- [x] Username and password authentication
-- [x] jwt token
-
+  - [x] Username and password authentication
+  - [x] jwt token
 2. Tasks
-
-- [x] Create and delete tasks
-- [ ] Sort tasks by their deadlines
-
+  - [x] Create and delete tasks
+  - [ ] Sort tasks by their deadlines
 3. Tags
-
-- [x] Add tags to a task
-
+  - [x] Add tags to a task
 4. Lists
-
-- [ ] Add tasks to a list
-
+  - [ ] Add tasks to a list
 5. Calendar view
-
-- [ ] View all the tasks as well as their deadlines on the calendar
-
+  - [ ] View all the tasks as well as their deadlines on the calendar
 6. Others
-
-- [ ] Searching for tasks, tags, list
-- [ ] Migration to graphql
-- [ ] Notifications
-- [ ] Dockerise
+  - [ ] Searching for tasks, tags, list
+  - [ ] Migration to graphql
+  - [ ] Notifications
+  - [ ] Dockerise
