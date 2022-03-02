@@ -74,7 +74,7 @@
     "@typescript-eslint/parser": "5.13.0",
     "autoprefixer": "10.4.2",
     "eslint": "8.10.0",
-    "eslint-config-prettier": "8.4.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-react": "7.28.0",
     "husky": "7.0.4",
     "lint-staged": "12.3.4",
